@@ -6,7 +6,8 @@ st.set_page_config(page_title="AI Roadmap Generator")
 
 st.title("🚀 AI Roadmap Generator (Hugging Face)")
 
-API_URL = "https://router.huggingface.co/google/gemma-2b-it"
+API_URL = "API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-large"
+"
 
 headers = {
     "Authorization": f"Bearer {os.getenv('HF_TOKEN')}",
@@ -53,3 +54,4 @@ if st.button("Generate Roadmap"):
             st.write(result)
     else:
         st.warning("Please enter a goal")
+
