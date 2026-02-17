@@ -1,4 +1,0 @@
-streamlit==1.30.0
-openai>=1.7.0
-reportlab==3.6.13
-
