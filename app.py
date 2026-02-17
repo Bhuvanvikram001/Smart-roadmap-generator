@@ -17,12 +17,20 @@ def query(prompt):
     payload = {
         "inputs": prompt,
         "parameters": {
-            "max_new_tokens": 500
+            "max_new_tokens": 400
         }
     }
 
     response = requests.post(API_URL, headers=headers, json=payload)
-    return response.json()
+
+    # 🔍 Debug info
+    if response.status_code != 200:
+        return f"Error {response.status_code}: {response.text}"
+
+    try:
+        return response.json()
+    except Exception:
+        return f"Invalid JSON response: {response.text}"
 
 goal = st.text_input("Enter Your Career Goal")
 
@@ -30,7 +38,7 @@ if st.button("Generate Roadmap"):
     if goal:
         with st.spinner("Generating roadmap..."):
             result = query(
-                f"Create a detailed roadmap to become {goal} with timeline, tools, and projects."
+                f"Create a detailed roadmap to become {goal} with timeline and projects."
             )
 
             if isinstance(result, list):
